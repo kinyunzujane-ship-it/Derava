@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover your style with DÉRAVA — beautiful dera styles for your everyday flow. Based in Kilifi, Kenya.">
+  <meta name="theme-color" content="#7b2948">
+  <title>DÉRAVA | Your Style. Your Flow.</title>
+  <style>
+    :root {
+      --wine: #7b2948;
+      --wine-dark: #4d1830;
+      --rose: #f8e9ee;
+      --cream: #fffaf7;
+      --ink: #30232a;
+      --muted: #75636b;
+      --white: #ffffff;
+      --line: #ead7de;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .topline {
+      background: var(--wine-dark);
+      color: white;
+      text-align: center;
+      padding: 8px 14px;
+      font-size: .83rem;
+      letter-spacing: .04em;
+    }
+    header {
+      background: rgba(255,250,247,.96);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+    .nav {
+      max-width: 1120px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .logo {
+      color: var(--wine);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: bold;
+      font-size: 1.65rem;
+      letter-spacing: .13em;
+      text-decoration: none;
+    }
+    .navlinks { display: flex; align-items: center; gap: 18px; }
+    .navlinks a { text-decoration: none; font-size: .92rem; }
+    .navlinks a:hover { color: var(--wine); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--wine);
+      color: white !important;
+      border: 1px solid var(--wine);
+      border-radius: 999px;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .btn:hover { background: var(--wine-dark); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--wine) !important; }
+    .hero {
+      background: linear-gradient(115deg, #f8e9ee 0%, #fffaf7 60%, #f2d8e1 100%);
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: auto;
+      padding: 68px 20px 72px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 46px;
+      align-items: center;
+    }
+    .eyebrow {
+      color: var(--wine);
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+    h1, h2, h3 { line-height: 1.15; }
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.7rem, 6vw, 5rem);
+      line-height: 1.02;
+      color: var(--wine-dark);
+      margin: 14px 0 20px;
+      font-weight: 500;
+    }
+    h1 em { color: var(--wine); font-weight: 400; }
+    .hero p { color: var(--muted); max-width: 520px; font-size: 1.05rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-art {
+      min-height: 380px;
+      border-radius: 48% 48% 24px 24px;
+      background: linear-gradient(145deg, #d99caf, #8d3a5b 55%, #4d1830);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 22px 55px rgba(77,24,48,.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-art:before, .hero-art:after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 50%;
+      width: 270px;
+      height: 380px;
+      transform: rotate(25deg);
+    }
+    .hero-art:after { transform: rotate(-25deg); width: 210px; }
+    .art-flower { font-size: 4rem; position: relative; z-index: 1; }
+    .art-brand {
+      position: relative;
+      z-index: 1;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2.1rem;
+      letter-spacing: .16em;
+      margin-top: 12px;
+    }
+    .art-caption { position: relative; z-index: 1; letter-spacing: .12em; font-size: .75rem; text-transform: uppercase; }
+    section { padding: 68px 20px; }
+    .section-inner { max-width: 1120px; margin: auto; }
+    .section-head { text-align: center; max-width: 650px; margin: 0 auto 34px; }
+    .section-head h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--wine-dark);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      margin: 8px 0 12px;
+    }
+    .section-head p { color: var(--muted); margin: 0; }
+    .collection { background: white; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .placeholder {
+      min-height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      color: var(--wine);
+      background: linear-gradient(145deg, #f8e9ee, #ecd0da);
+    }
+    .placeholder span { font-size: 2.6rem; }
+    .placeholder strong { font-family: Georgia, 'Times New Roman', serif; font-size: 1.25rem; margin-top: 8px; }
+    .placeholder small { color: #775665; margin-top: 4px; }
+    .card-body { padding: 18px; }
+    .card h3 { margin: 0 0 8px; color: var(--wine-dark); }
+    .card p { margin: 0 0 14px; color: var(--muted); font-size: .93rem; }
+    .card .btn { padding: 10px 15px; font-size: .9rem; }
+    .note { font-size: .84rem; color: var(--muted); text-align: center; margin-top: 22px; }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 38px; align-items: center; }
+    .about-mark {
+      background: var(--rose);
+      color: var(--wine);
+      min-height: 250px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2.3rem;
+      letter-spacing: .12em;
+      text-align: center;
+      padding: 25px;
+    }
+    .about-copy h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--wine-dark);
+      font-size: 2.4rem;
+      font-weight: 500;
+      margin: 8px 0 14px;
+    }
+    .about-copy p { color: var(--muted); }
+    .contact { background: var(--rose); }
+    .contact-box {
+      max-width: 760px;
+      margin: auto;
+      padding: 34px;
+      text-align: center;
+      border-radius: 22px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+    }
+    .contact-box h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--wine-dark);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 500;
+      margin: 10px 0;
+    }
+    .contact-box p { color: var(--muted); }
+    .contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    footer { background: var(--wine-dark); color: #fbeef2; padding: 28px 20px; text-align: center; }
+    footer .footer-logo { font-family: Georgia, 'Times New Roman', serif; letter-spacing: .16em; font-size: 1.35rem; }
+    footer p { margin: 5px 0; font-size: .88rem; opacity: .88; }
+    .whatsapp-float {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 20;
+      background: #18864b;
+      color: white;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 12px 17px;
+      font-weight: bold;
+      box-shadow: 0 6px 22px rgba(0,0,0,.2);
+    }
+    @media (max-width: 760px) {
+      .nav { flex-wrap: wrap; }
+      .navlinks { width: 100%; justify-content: space-between; gap: 10px; }
+      .navlinks a { font-size: .84rem; }
+      .navlinks .btn { padding: 9px 13px; }
+      .hero-inner { grid-template-columns: 1fr; padding-top: 48px; gap: 30px; }
+      .hero-art { min-height: 280px; }
+      .cards { grid-template-columns: 1fr; }
+      .placeholder { min-height: 190px; }
+      .about-grid { grid-template-columns: 1fr; }
+      section { padding: 52px 18px; }
+      .contact-box { padding: 25px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">A little style, a lot of you · Kilifi, Kenya</div>
+
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="logo" href="#home">DÉRAVA</a>
+      <div class="navlinks">
+        <a href="#collection">Collection</a>
+        <a href="#about">Our story</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20I%27d%20love%20to%20see%20your%20dera%20collection." target="_blank" rel="noopener">Shop on WhatsApp</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Made for your everyday glow</div>
+          <h1>Your Style.<br><em>Your Flow.</em></h1>
+          <p>Welcome to DÉRAVA — your place to discover beautiful dera styles that feel comfortable, feminine, and unmistakably you.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#collection">Explore the collection</a>
+            <a class="btn btn-outline" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%21%20Please%20share%20your%20available%20dera%20styles." target="_blank" rel="noopener">Ask us on WhatsApp</a>
+          </div>
+        </div>
+        <div class="hero-art" role="img" aria-label="DÉRAVA brand artwork in rose and burgundy tones">
+          <div class="art-flower">✿</div>
+          <div class="art-brand">DÉRAVA</div>
+          <div class="art-caption">Your style · Your flow</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection" id="collection">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="eyebrow">Find your favourite</div>
+          <h2>The DÉRAVA Collection</h2>
+          <p>Everyday comfort, lovely colours, and styles to make you feel good. Message us to see what is currently available.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="placeholder"><span>✿</span><strong>Everyday Dera</strong><small>Add your product photo here</small></div>
+            <div class="card-body">
+              <h3>Everyday Dera</h3>
+              <p>Easy, comfortable styles for your everyday moments.</p>
+              <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20please%20show%20me%20your%20Everyday%20Dera%20options." target="_blank" rel="noopener">Ask for styles & prices</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="placeholder"><span>❀</span><strong>Classic Dera</strong><small>Add your product photo here</small></div>
+            <div class="card-body">
+              <h3>Classic Dera</h3>
+              <p>Timeless looks for when you want something extra special.</p>
+              <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20please%20show%20me%20your%20Classic%20Dera%20options." target="_blank" rel="noopener">Ask for styles & prices</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="placeholder"><span>♡</span><strong>New Arrivals</strong><small>Add your product photo here</small></div>
+            <div class="card-body">
+              <h3>New Arrivals</h3>
+              <p>Ask us about the latest colours, prints, and designs.</p>
+              <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20what%20are%20your%20new%20arrivals%3F" target="_blank" rel="noopener">See new arrivals</a>
+            </div>
+          </article>
+        </div>
+        <p class="note">Product images and prices are placeholders for now. Contact DÉRAVA for current stock and pricing.</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-inner about-grid">
+        <div class="about-mark">DÉRAVA<br><small style="font-size:.8rem;letter-spacing:.08em">YOUR STYLE. YOUR FLOW.</small></div>
+        <div class="about-copy">
+          <div class="eyebrow">A little about us</div>
+          <h2>Feel good in your own style.</h2>
+          <p>DÉRAVA is here to make finding a dera you love feel simple and personal. We believe style should feel like you — comfortable, confident, and beautiful.</p>
+          <p>We’re based in Kilifi, Kenya. Reach out on WhatsApp to ask about available designs, sizes, prices, and delivery arrangements.</p>
+          <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener">Talk to DÉRAVA</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="section-inner">
+        <div class="contact-box">
+          <div class="eyebrow">We’d love to hear from you</div>
+          <h2>Let’s find your style.</h2>
+          <p>Want to see available dera designs or ask about prices? Send us a message. We’ll help you explore the options.</p>
+          <div class="contact-actions">
+            <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%21" target="_blank" rel="noopener">WhatsApp: 0793 526 605</a>
+            <a class="btn btn-outline" href="mailto:kinyunzujane@gmail.com">Email us</a>
+          </div>
+          <p><strong>Location:</strong> Kilifi, Kenya</p>
+          <p><strong>WhatsApp:</strong> 0793 526 605</p>
+          <p><strong>Email:</strong> kinyunzujane@gmail.com</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">DÉRAVA</div>
+    <p>Your Style. Your Flow.</p>
+    <p>© <span id="year"></span> DÉRAVA. All rights reserved.</p>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%21" target="_blank" rel="noopener" aria-label="Chat with DÉRAVA on WhatsApp">WhatsApp ↗</a>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
