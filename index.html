@@ -1,374 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover your style with DÉRAVA — beautiful dera styles for your everyday flow. Based in Kilifi, Kenya.">
-  <meta name="theme-color" content="#7b2948">
-  <title>DÉRAVA | Your Style. Your Flow.</title>
-  <style>
-    :root {
-      --wine: #7b2948;
-      --wine-dark: #4d1830;
-      --rose: #f8e9ee;
-      --cream: #fffaf7;
-      --ink: #30232a;
-      --muted: #75636b;
-      --white: #ffffff;
-      --line: #ead7de;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: var(--cream);
-      line-height: 1.6;
-    }
-    a { color: inherit; }
-    .topline {
-      background: var(--wine-dark);
-      color: white;
-      text-align: center;
-      padding: 8px 14px;
-      font-size: .83rem;
-      letter-spacing: .04em;
-    }
-    header {
-      background: rgba(255,250,247,.96);
-      border-bottom: 1px solid var(--line);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-    }
-    .nav {
-      max-width: 1120px;
-      margin: auto;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-    .logo {
-      color: var(--wine);
-      font-family: Georgia, 'Times New Roman', serif;
-      font-weight: bold;
-      font-size: 1.65rem;
-      letter-spacing: .13em;
-      text-decoration: none;
-    }
-    .navlinks { display: flex; align-items: center; gap: 18px; }
-    .navlinks a { text-decoration: none; font-size: .92rem; }
-    .navlinks a:hover { color: var(--wine); }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--wine);
-      color: white !important;
-      border: 1px solid var(--wine);
-      border-radius: 999px;
-      padding: 12px 20px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .btn:hover { background: var(--wine-dark); transform: translateY(-1px); }
-    .btn-outline { background: transparent; color: var(--wine) !important; }
-    .hero {
-      background: linear-gradient(115deg, #f8e9ee 0%, #fffaf7 60%, #f2d8e1 100%);
-      overflow: hidden;
-    }
-    .hero-inner {
-      max-width: 1120px;
-      margin: auto;
-      padding: 68px 20px 72px;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 46px;
-      align-items: center;
-    }
-    .eyebrow {
-      color: var(--wine);
-      font-size: .78rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-    }
-    h1, h2, h3 { line-height: 1.15; }
-    h1 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(2.7rem, 6vw, 5rem);
-      line-height: 1.02;
-      color: var(--wine-dark);
-      margin: 14px 0 20px;
-      font-weight: 500;
-    }
-    h1 em { color: var(--wine); font-weight: 400; }
-    .hero p { color: var(--muted); max-width: 520px; font-size: 1.05rem; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .hero-art {
-      min-height: 380px;
-      border-radius: 48% 48% 24px 24px;
-      background: linear-gradient(145deg, #d99caf, #8d3a5b 55%, #4d1830);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      padding: 28px;
-      text-align: center;
-      box-shadow: 0 22px 55px rgba(77,24,48,.15);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-art:before, .hero-art:after {
-      content: "";
-      position: absolute;
-      border: 1px solid rgba(255,255,255,.24);
-      border-radius: 50%;
-      width: 270px;
-      height: 380px;
-      transform: rotate(25deg);
-    }
-    .hero-art:after { transform: rotate(-25deg); width: 210px; }
-    .art-flower { font-size: 4rem; position: relative; z-index: 1; }
-    .art-brand {
-      position: relative;
-      z-index: 1;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 2.1rem;
-      letter-spacing: .16em;
-      margin-top: 12px;
-    }
-    .art-caption { position: relative; z-index: 1; letter-spacing: .12em; font-size: .75rem; text-transform: uppercase; }
-    section { padding: 68px 20px; }
-    .section-inner { max-width: 1120px; margin: auto; }
-    .section-head { text-align: center; max-width: 650px; margin: 0 auto 34px; }
-    .section-head h2 {
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--wine-dark);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 500;
-      margin: 8px 0 12px;
-    }
-    .section-head p { color: var(--muted); margin: 0; }
-    .collection { background: white; }
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      overflow: hidden;
-      background: var(--cream);
-    }
-    .placeholder {
-      min-height: 230px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 20px;
-      color: var(--wine);
-      background: linear-gradient(145deg, #f8e9ee, #ecd0da);
-    }
-    .placeholder span { font-size: 2.6rem; }
-    .placeholder strong { font-family: Georgia, 'Times New Roman', serif; font-size: 1.25rem; margin-top: 8px; }
-    .placeholder small { color: #775665; margin-top: 4px; }
-    .card-body { padding: 18px; }
-    .card h3 { margin: 0 0 8px; color: var(--wine-dark); }
-    .card p { margin: 0 0 14px; color: var(--muted); font-size: .93rem; }
-    .card .btn { padding: 10px 15px; font-size: .9rem; }
-    .note { font-size: .84rem; color: var(--muted); text-align: center; margin-top: 22px; }
-    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 38px; align-items: center; }
-    .about-mark {
-      background: var(--rose);
-      color: var(--wine);
-      min-height: 250px;
-      border-radius: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 2.3rem;
-      letter-spacing: .12em;
-      text-align: center;
-      padding: 25px;
-    }
-    .about-copy h2 {
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--wine-dark);
-      font-size: 2.4rem;
-      font-weight: 500;
-      margin: 8px 0 14px;
-    }
-    .about-copy p { color: var(--muted); }
-    .contact { background: var(--rose); }
-    .contact-box {
-      max-width: 760px;
-      margin: auto;
-      padding: 34px;
-      text-align: center;
-      border-radius: 22px;
-      background: var(--cream);
-      border: 1px solid var(--line);
-    }
-    .contact-box h2 {
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--wine-dark);
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 500;
-      margin: 10px 0;
-    }
-    .contact-box p { color: var(--muted); }
-    .contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
-    footer { background: var(--wine-dark); color: #fbeef2; padding: 28px 20px; text-align: center; }
-    footer .footer-logo { font-family: Georgia, 'Times New Roman', serif; letter-spacing: .16em; font-size: 1.35rem; }
-    footer p { margin: 5px 0; font-size: .88rem; opacity: .88; }
-    .whatsapp-float {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 20;
-      background: #18864b;
-      color: white;
-      text-decoration: none;
-      border-radius: 999px;
-      padding: 12px 17px;
-      font-weight: bold;
-      box-shadow: 0 6px 22px rgba(0,0,0,.2);
-    }
-    @media (max-width: 760px) {
-      .nav { flex-wrap: wrap; }
-      .navlinks { width: 100%; justify-content: space-between; gap: 10px; }
-      .navlinks a { font-size: .84rem; }
-      .navlinks .btn { padding: 9px 13px; }
-      .hero-inner { grid-template-columns: 1fr; padding-top: 48px; gap: 30px; }
-      .hero-art { min-height: 280px; }
-      .cards { grid-template-columns: 1fr; }
-      .placeholder { min-height: 190px; }
-      .about-grid { grid-template-columns: 1fr; }
-      section { padding: 52px 18px; }
-      .contact-box { padding: 25px 18px; }
-    }
-  </style>
-</head>
-<body>
-  <div class="topline">A little style, a lot of you · Kilifi, Kenya</div>
-
-  <header>
-    <nav class="nav" aria-label="Main navigation">
-      <a class="logo" href="#home">DÉRAVA</a>
-      <div class="navlinks">
-        <a href="#collection">Collection</a>
-        <a href="#about">Our story</a>
-        <a href="#contact">Contact</a>
-        <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20I%27d%20love%20to%20see%20your%20dera%20collection." target="_blank" rel="noopener">Shop on WhatsApp</a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-inner">
-        <div>
-          <div class="eyebrow">Made for your everyday glow</div>
-          <h1>Your Style.<br><em>Your Flow.</em></h1>
-          <p>Welcome to DÉRAVA — your place to discover beautiful dera styles that feel comfortable, feminine, and unmistakably you.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#collection">Explore the collection</a>
-            <a class="btn btn-outline" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%21%20Please%20share%20your%20available%20dera%20styles." target="_blank" rel="noopener">Ask us on WhatsApp</a>
-          </div>
-        </div>
-        <div class="hero-art" role="img" aria-label="DÉRAVA brand artwork in rose and burgundy tones">
-          <div class="art-flower">✿</div>
-          <div class="art-brand">DÉRAVA</div>
-          <div class="art-caption">Your style · Your flow</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="collection" id="collection">
-      <div class="section-inner">
-        <div class="section-head">
-          <div class="eyebrow">Find your favourite</div>
-          <h2>The DÉRAVA Collection</h2>
-          <p>Everyday comfort, lovely colours, and styles to make you feel good. Message us to see what is currently available.</p>
-        </div>
-        <div class="cards">
-          <article class="card">
-            <div class="placeholder"><span>✿</span><strong>Everyday Dera</strong><small>Add your product photo here</small></div>
-            <div class="card-body">
-              <h3>Everyday Dera</h3>
-              <p>Easy, comfortable styles for your everyday moments.</p>
-              <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20please%20show%20me%20your%20Everyday%20Dera%20options." target="_blank" rel="noopener">Ask for styles & prices</a>
-            </div>
-          </article>
-          <article class="card">
-            <div class="placeholder"><span>❀</span><strong>Classic Dera</strong><small>Add your product photo here</small></div>
-            <div class="card-body">
-              <h3>Classic Dera</h3>
-              <p>Timeless looks for when you want something extra special.</p>
-              <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20please%20show%20me%20your%20Classic%20Dera%20options." target="_blank" rel="noopener">Ask for styles & prices</a>
-            </div>
-          </article>
-          <article class="card">
-            <div class="placeholder"><span>♡</span><strong>New Arrivals</strong><small>Add your product photo here</small></div>
-            <div class="card-body">
-              <h3>New Arrivals</h3>
-              <p>Ask us about the latest colours, prints, and designs.</p>
-              <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20what%20are%20your%20new%20arrivals%3F" target="_blank" rel="noopener">See new arrivals</a>
-            </div>
-          </article>
-        </div>
-        <p class="note">Product images and prices are placeholders for now. Contact DÉRAVA for current stock and pricing.</p>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="section-inner about-grid">
-        <div class="about-mark">DÉRAVA<br><small style="font-size:.8rem;letter-spacing:.08em">YOUR STYLE. YOUR FLOW.</small></div>
-        <div class="about-copy">
-          <div class="eyebrow">A little about us</div>
-          <h2>Feel good in your own style.</h2>
-          <p>DÉRAVA is here to make finding a dera you love feel simple and personal. We believe style should feel like you — comfortable, confident, and beautiful.</p>
-          <p>We’re based in Kilifi, Kenya. Reach out on WhatsApp to ask about available designs, sizes, prices, and delivery arrangements.</p>
-          <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener">Talk to DÉRAVA</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="section-inner">
-        <div class="contact-box">
-          <div class="eyebrow">We’d love to hear from you</div>
-          <h2>Let’s find your style.</h2>
-          <p>Want to see available dera designs or ask about prices? Send us a message. We’ll help you explore the options.</p>
-          <div class="contact-actions">
-            <a class="btn" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%21" target="_blank" rel="noopener">WhatsApp: 0793 526 605</a>
-            <a class="btn btn-outline" href="mailto:kinyunzujane@gmail.com">Email us</a>
-          </div>
-          <p><strong>Location:</strong> Kilifi, Kenya</p>
-          <p><strong>WhatsApp:</strong> 0793 526 605</p>
-          <p><strong>Email:</strong> kinyunzujane@gmail.com</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-logo">DÉRAVA</div>
-    <p>Your Style. Your Flow.</p>
-    <p>© <span id="year"></span> DÉRAVA. All rights reserved.</p>
-  </footer>
-
-  <a class="whatsapp-float" href="https://wa.me/254793526605?text=Hi%20D%C3%89RAVA%21" target="_blank" rel="noopener" aria-label="Chat with DÉRAVA on WhatsApp">WhatsApp ↗</a>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#681d35"><title>DÉRAVA | Your Style. Your Flow.</title>
+<style>
+:root{--wine:#681d35;--wine2:#8e3452;--rose:#f7e8ec;--pink:#d99aaa;--cream:#fffaf8;--ink:#291a20;--muted:#786970;--line:#ead8de}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial,sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(1120px,92%);margin:auto}header{position:sticky;top:0;background:#fffaf8ed;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:5}.nav{min-height:68px;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:1.35rem;font-weight:900;letter-spacing:2px;color:var(--wine);text-decoration:none}.brand small{display:block;font-size:.66rem;letter-spacing:.5px;color:var(--muted)}.navlinks{display:flex;align-items:center;gap:12px}.navlinks a{color:var(--ink);text-decoration:none;font-weight:700}.btn{border:0;border-radius:999px;padding:11px 16px;font-weight:750;display:inline-flex;justify-content:center;align-items:center;gap:6px}.primary{background:var(--wine);color:#fff}.soft{background:var(--rose);color:var(--wine)}.outline{background:transparent;border:1px solid var(--wine);color:var(--wine)}.small{padding:8px 12px;font-size:.88rem}.hero{padding:50px 0;background:linear-gradient(120deg,#f7e8ec,#fffaf8 58%,#f1d9e0)}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.78rem;font-weight:850;color:var(--wine2)}h1{font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.03;letter-spacing:-2px;color:var(--wine);margin:12px 0 18px}.hero p{line-height:1.7;color:#5e4b53;max-width:540px}.hero-art{min-height:280px;border-radius:28px;background:linear-gradient(145deg,#8e3452,#4c1428);padding:24px;display:flex;align-items:end;color:white;box-shadow:0 18px 50px #681d3520}.hero-art strong{font-size:1.8rem;line-height:1.2}.hero-art span{display:block;font-size:.95rem;font-weight:500;margin-top:12px;line-height:1.5}section{padding:40px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:22px}.section-head h2{margin:5px 0;color:var(--wine);font-size:clamp(1.6rem,4vw,2.2rem)}.muted{color:var(--muted)}.notice{background:#fff4d9;border:1px solid #edd69b;color:#664b0a;border-radius:12px;padding:12px;font-size:.9rem;line-height:1.5}.filters{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.filter{border:1px solid var(--line);border-radius:999px;padding:8px 13px;background:white;color:var(--wine);font-weight:700}.filter.active{background:var(--wine);color:white}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{border:1px solid var(--line);border-radius:18px;background:white;overflow:hidden;display:flex;flex-direction:column}.photo{aspect-ratio:4/4.3;background:var(--rose);display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--wine2);text-align:center;font-weight:800}.photo img{width:100%;height:100%;object-fit:cover}.placeholder{padding:20px}.card-body{padding:14px;display:flex;flex-direction:column;gap:9px;flex:1}.card h3{margin:0;font-size:1.05rem}.desc{font-size:.88rem;line-height:1.45;color:var(--muted);margin:0}.price-row{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:auto}.price{font-weight:900;color:var(--wine);font-size:1.1rem}.stock{font-size:.78rem;font-weight:750}.in-stock{color:#267348}.out-stock{color:#a22b3c}.empty{padding:28px;border:1px dashed var(--pink);border-radius:16px;text-align:center;color:var(--muted);grid-column:1/-1}.about{background:var(--rose)}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}.about-box{background:white;border:1px solid var(--line);padding:22px;border-radius:20px;line-height:1.7}footer{padding:26px 0;background:#35101e;color:white}.footer-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.footer-row a{color:white}.floating{position:fixed;right:15px;bottom:15px;z-index:8;box-shadow:0 8px 28px #681d3540}.overlay{position:fixed;inset:0;background:#1c0b12a8;z-index:20;display:none;align-items:center;justify-content:center;padding:14px}.overlay.show{display:flex}.modal{background:white;border-radius:20px;width:min(680px,100%);max-height:90vh;overflow:auto;padding:20px}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.modal h2{margin:0;color:var(--wine)}.iconbtn{border:0;background:var(--rose);color:var(--wine);border-radius:50%;width:38px;height:38px;font-weight:900}.cart-line{display:grid;grid-template-columns:1fr auto;gap:12px;border-bottom:1px solid var(--line);padding:12px 0}.cart-line small{display:block;color:var(--muted);margin-top:4px}.qty{display:flex;gap:7px;align-items:center}.qty button{border:1px solid var(--line);background:white;border-radius:8px;padding:3px 9px}.total{font-size:1.15rem;font-weight:900;color:var(--wine);display:flex;justify-content:space-between;padding:16px 0}.field{display:flex;flex-direction:column;gap:5px;margin:10px 0}.field label{font-weight:750;font-size:.9rem}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:white}.field textarea{min-height:75px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-product{display:grid;grid-template-columns:55px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.admin-product img{width:55px;height:55px;object-fit:cover;border-radius:9px;background:var(--rose)}.admin-tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.danger{color:#9b2335}.success{background:#e9f7ee;border-color:#b9e4c7;color:#205b35}
+@media(max-width:760px){.hero-grid,.about-grid{grid-template-columns:1fr}.hero{padding-top:36px}.hero-art{min-height:210px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.navlinks a{display:none}.section-head{align-items:start;flex-direction:column}.form-grid{grid-template-columns:1fr}}@media(max-width:420px){.grid{grid-template-columns:1fr 1fr}.card-body{padding:10px}.card-actions .btn{padding:8px}.brand{font-size:1.15rem}}
+</style></head><body>
+<header><div class="wrap nav"><a class="brand" href="#">DÉRAVA<small>Your Style. Your Flow.</small></a><nav class="navlinks"><a href="#shop">Shop</a><a href="#about">About</a><button class="btn soft" id="navCart">🛍️ Cart (<span id="cartCount">0</span>)</button></nav></div></header>
+<main><div class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Made for your everyday flow</div><h1>Your Style.<br>Your Flow.</h1><p>Discover dera designs that make everyday dressing feel special. Find your favourite, add it to your cart, and place your order with us on WhatsApp.</p><a class="btn primary" href="#shop">Shop the collection →</a></div><div class="hero-art"><div><strong>A little colour.<br>A lot of confidence.</strong><span>Beautiful dera styles, selected for you by DÉRAVA.</span></div></div></div></div>
+<section id="shop"><div class="wrap"><div class="section-head"><div><div class="eyebrow">The collection</div><h2>Find your next favourite</h2><p class="muted">Browse available designs and add your picks to the cart.</p></div><button class="btn outline" id="refreshBtn">↻ Refresh products</button></div><div id="status" class="notice">Loading collection…</div><div class="filters" id="filters"></div><div class="grid" id="productGrid"></div></div></section>
+<section id="about" class="about"><div class="wrap about-grid"><div><div class="eyebrow">A little about us</div><h2 style="color:var(--wine);font-size:2rem">Style that feels like you.</h2><p class="muted" style="line-height:1.8">DÉRAVA helps you find beautiful dera designs for your everyday style. Browse the collection, choose what you love, and message us to confirm your order and delivery.</p></div><div class="about-box"><strong style="color:var(--wine)">Ordering made simple</strong><p>1. Add designs to your cart.<br>2. Review items and quantities.<br>3. Send your order through WhatsApp.<br>4. We'll confirm availability, delivery charges and timing.</p><strong>Delivery across Kenya</strong><p class="muted">Delivery costs and estimated arrival times are confirmed on WhatsApp. Payment is arranged directly with the shop.</p></div></div></section></main>
+<footer><div class="wrap footer-row"><div><strong>DÉRAVA</strong><div>Your Style. Your Flow.</div></div><div>WhatsApp: <a id="footerWhatsApp" href="https://wa.me/254793526605">0793 526 605</a><br><span>kinyunzujane@gmail.com</span></div><div>© <span id="year"></span> DÉRAVA</div></div></footer>
+<button class="btn primary floating" id="floatingCart">🛍️ View cart (<span id="floatingCount">0</span>)</button>
+<div class="overlay" id="cartOverlay" role="dialog" aria-modal="true"><div class="modal"><div class="modal-head"><h2>Your shopping cart</h2><button class="iconbtn" data-close="cartOverlay">×</button></div><div id="cartItems"></div><div class="total"><span>Subtotal</span><span id="cartTotal">KSh 0</span></div><p class="muted">Delivery charges are not included. We'll confirm delivery and availability on WhatsApp.</p><div class="field"><label for="customerName">Your name (optional)</label><input id="customerName" placeholder="Name"></div><div class="field"><label for="customerLocation">Delivery town / area</label><input id="customerLocation" placeholder="e.g. Kilifi, Mombasa, Nairobi"></div><div class="field"><label for="orderNotes">Notes (optional)</label><textarea id="orderNotes" placeholder="Any questions or preferences…"></textarea></div><button class="btn primary" id="sendOrder" style="width:100%">Send order on WhatsApp</button></div></div>
+<div class="overlay" id="adminOverlay" role="dialog" aria-modal="true"><div class="modal"><div class="modal-head"><h2>DÉRAVA admin</h2><button class="iconbtn" data-close="adminOverlay">×</button></div><div id="adminContent"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* Add your Supabase URL and publishable key. Never put a service_role/secret key here. */
+const SUPABASE_URL="https://xwhdpmnpltbgascxgyft.supabase.co/rest/v1/";
+const SUPABASE_KEY="sb_publishable_VCKT7k50yn2LfhS9AUOvdA_MPh7V9RS";
+const SHOP_WHATSAPP="254793526605";
+const money=n=>new Intl.NumberFormat("en-KE",{style:"currency",currency:"KES",maximumFractionDigits:0}).format(Number(n)||0);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const configured=()=>SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("PASTE_")&&SUPABASE_KEY&&!SUPABASE_KEY.includes("PASTE_");
+let sb=null,products=[],activeCategory="All",cart={},adminUser=null;
+const demo=[{id:"demo1",name:"Everyday Dera",price:500,category:"Everyday Dera",image_url:"",stock_quantity:8,description:"An easy favourite for everyday wear.",is_active:true},{id:"demo2",name:"Classic Dera",price:800,category:"Classic Dera",image_url:"",stock_quantity:5,description:"A timeless style for your wardrobe.",is_active:true},{id:"demo3",name:"New Arrival Dera",price:1000,category:"New Arrivals",image_url:"",stock_quantity:3,description:"Fresh style from our latest collection.",is_active:true}];
+function status(t,cls=""){let e=document.getElementById("status");e.className="notice "+cls;e.textContent=t}
+function init(){if(!configured()||!window.supabase)return false;sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);return true}
+async function loadProducts(){if(!init()){products=demo.slice();status("Preview mode: add your Supabase URL and publishable key in index.html to load real products and enable admin management.");renderFilters();renderProducts();return}status("Loading products…");try{let {data,error}=await sb.from("products").select("id,name,price,category,image_url,stock_quantity,description,is_active").eq("is_active",true).order("name");if(error)throw error;products=data||[];status(products.length?`${products.length} design(s) available. Choose your favourites below.`:"Our collection is being updated. Please check back soon.")}catch(e){products=demo.slice();status("Couldn't load live products. Check Supabase URL, key, table and SELECT policy.");console.error(e)}renderFilters();renderProducts()}
+function cats(){return ["All",...new Set(products.map(p=>p.category).filter(Boolean))]}
+function renderFilters(){let b=document.getElementById("filters");b.innerHTML=cats().map(c=>`<button class="filter ${c===activeCategory?"active":""}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");b.querySelectorAll("button").forEach(x=>x.onclick=()=>{activeCategory=x.dataset.cat;renderFilters();renderProducts()})}
+function renderProducts(){let grid=document.getElementById("productGrid"),list=products.filter(p=>(activeCategory==="All"||p.category===activeCategory)&&p.is_active!==false);if(!list.length){grid.innerHTML='<div class="empty">No products in this category right now. Please check back soon. 💗</div>';return}grid.innerHTML=list.map(p=>{let q=Number(p.stock_quantity)||0,sold=q<=0,img=p.image_url?`<img loading="lazy" src="${esc(p.image_url)}" alt="${esc(p.name)}" onerror="this.style.display='none'">`:`<div class="placeholder">DÉRAVA<br><small>Product photo coming soon</small></div>`;return `<article class="card"><div class="photo">${img}</div><div class="card-body"><h3>${esc(p.name)}</h3><p class="desc">${esc(p.description||"A beautiful DÉRAVA pick.")}</p><div class="price-row"><span class="price">${money(p.price)}</span><span class="stock ${sold?"out-stock":"in-stock"}">${sold?"Sold out":q+" in stock"}</span></div><div class="card-actions"><button class="btn primary small" data-add="${esc(p.id)}" ${sold?"disabled":""}>${sold?"Sold out":"Add to cart"}</button></div></div></article>`}).join("");grid.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>add(b.dataset.add))}
+function find(id){return products.find(p=>String(p.id)===String(id))}
+function add(id){let p=find(id);if(!p)return;if(String(id).startsWith("demo")){alert("Preview only. Connect Supabase to use live products and orders.");return}if((cart[id]||0)>=Number(p.stock_quantity||0)){alert("Not enough stock available.");return}cart[id]=(cart[id]||0)+1;count();openCart()}
+function count(){let n=Object.values(cart).reduce((a,b)=>a+b,0);document.getElementById("cartCount").textContent=n;document.getElementById("floatingCount").textContent=n}
+function openCart(){renderCart();document.getElementById("cartOverlay").classList.add("show")}
+function renderCart(){let box=document.getElementById("cartItems"),items=Object.entries(cart).filter(([id,q])=>q>0&&find(id));if(!items.length){box.innerHTML='<div class="empty">Your cart is empty. Browse the collection to add favourites. 💗</div>';document.getElementById("cartTotal").textContent=money(0);return}let total=0;box.innerHTML=items.map(([id,q])=>{let p=find(id),sub=Number(p.price)*q;total+=sub;return `<div class="cart-line"><div><strong>${esc(p.name)}</strong><small>${money(p.price)} each · ${money(sub)}</small></div><div class="qty"><button data-minus="${esc(id)}">−</button><strong>${q}</strong><button data-plus="${esc(id)}">+</button><button class="iconbtn" style="width:30px;height:30px" data-remove="${esc(id)}">×</button></div></div>`}).join("");document.getElementById("cartTotal").textContent=money(total);box.querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>{let id=b.dataset.minus;if(--cart[id]<=0)delete cart[id];count();renderCart()});box.querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>{let id=b.dataset.plus,p=find(id);if(cart[id]<Number(p.stock_quantity||0)){cart[id]++;count();renderCart()}else alert("That is all the stock currently available.")});box.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{delete cart[b.dataset.remove];count();renderCart()})}
+function sendOrder(){let items=Object.entries(cart).filter(([id,q])=>q>0&&find(id));if(!items.length){alert("Your cart is empty.");return}let total=0,lines=items.map(([id,q])=>{let p=find(id),sub=Number(p.price)*q;total+=sub;return `• ${p.name} × ${q} — ${money(sub)}`});let name=document.getElementById("customerName").value.trim(),loc=document.getElementById("customerLocation").value.trim(),notes=document.getElementById("orderNotes").value.trim();let msg=`Hello DÉRAVA! I'd like to place an order:\n\n${lines.join("\n")}\n\nSubtotal: ${money(total)}\nName: ${name||"Not provided"}\nDelivery area: ${loc||"Please confirm with me"}\nNotes: ${notes||"None"}\n\nPlease confirm stock, delivery charges and timing. Thank you!`;window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${encodeURIComponent(msg)}`,"_blank","noopener")}
+function openAdmin(){document.getElementById("adminOverlay").classList.add("show");renderAdmin()}
+function renderAdmin(){let box=document.getElementById("adminContent");if(!init()){box.innerHTML='<div class="notice">Connect Supabase first by entering your project URL and publishable key in index.html. Admin management is disabled in preview mode.</div>';return}if(!adminUser){box.innerHTML='<p class="muted">Sign in with the admin account created in Supabase Authentication → Users.</p><form id="loginForm"><div class="field"><label>Email</label><input id="adminEmail" type="email" required autocomplete="username"></div><div class="field"><label>Password</label><input id="adminPassword" type="password" required autocomplete="current-password"></div><button class="btn primary">Sign in</button><p id="loginError" class="danger"></p></form>';document.getElementById("loginForm").onsubmit=login;return}box.innerHTML=`<div class="notice success">Signed in as ${esc(adminUser.email||"admin")}. Database RLS must restrict edits to your admin UID.</div><div class="admin-tools"><button class="btn primary" id="newProduct">＋ Add product</button><button class="btn outline" id="logout">Sign out</button><button class="btn soft" id="reload">Refresh</button></div><div id="productFormWrap"></div><h3>Products</h3><div id="adminList"></div>`;document.getElementById("newProduct").onclick=()=>productForm();document.getElementById("logout").onclick=async()=>{await sb.auth.signOut();adminUser=null;renderAdmin()};document.getElementById("reload").onclick=async()=>{await loadAdminProducts();renderAdmin()};renderAdminList()}
+async function login(e){e.preventDefault();let {data,error}=await sb.auth.signInWithPassword({email:document.getElementById("adminEmail").value.trim(),password:document.getElementById("adminPassword").value});if(error){document.getElementById("loginError").textContent=error.message;return}adminUser=data.user;await loadAdminProducts();renderAdmin()}
+async function loadAdminProducts(){let {data,error}=await sb.from("products").select("*").order("name");if(error){alert("Could not load products: "+error.message);return}products=data||[];renderFilters();renderProducts()}
+function renderAdminList(){let el=document.getElementById("adminList");if(!el)return;if(!products.length){el.innerHTML="<p>No products yet. Add your first product.</p>";return}el.innerHTML=products.map(p=>`<div class="admin-product"><img src="${esc(p.image_url||"")}" alt="" onerror="this.style.visibility='hidden'"><div><strong>${esc(p.name)}</strong><div class="muted">${money(p.price)} · ${esc(p.category||"Uncategorised")} · Stock ${Number(p.stock_quantity)||0} ${p.is_active===false?"· Hidden":""}</div></div><div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:end"><button class="btn soft small" data-edit="${esc(p.id)}">Edit</button><button class="btn outline small" data-toggle="${esc(p.id)}">${p.is_active===false?"Publish":"Hide"}</button><button class="btn small" style="background:#f9e3e7;color:#8b2035" data-delete="${esc(p.id)}">Delete</button></div></div>`).join("");el.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>productForm(find(b.dataset.edit)));el.querySelectorAll("[data-toggle]").forEach(b=>b.onclick=()=>toggle(b.dataset.toggle));el.querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>removeProduct(b.dataset.delete))}
+function productForm(p=null){let w=document.getElementById("productFormWrap"),edit=!!p;w.innerHTML=`<form id="productForm" class="about-box"><h3>${edit?"Edit product":"Add product"}</h3><div class="form-grid"><div class="field"><label>Product name *</label><input id="pName" required value="${esc(p?.name||"")}"></div><div class="field"><label>Price (KSh) *</label><input id="pPrice" type="number" min="0" required value="${esc(p?.price??"")}"></div><div class="field"><label>Category *</label><input id="pCategory" list="catOptions" required value="${esc(p?.category||"Everyday Dera")}"><datalist id="catOptions">${[...new Set(products.map(x=>x.category).filter(Boolean))].map(c=>`<option value="${esc(c)}">`).join("")}</datalist></div><div class="field"><label>Stock quantity *</label><input id="pStock" type="number" min="0" required value="${esc(p?.stock_quantity??0)}"></div></div><div class="field"><label>Product photo</label><input id="pImage" type="file" accept="image/*"><small class="muted">Choose an image under 6 MB.</small></div><div class="field"><label>Description</label><textarea id="pDescription">${esc(p?.description||"")}</textarea></div><label><input id="pActive" type="checkbox" ${p?.is_active===false?"":"checked"}> Visible to customers</label><div class="admin-tools"><button class="btn primary">${edit?"Save changes":"Add product"}</button><button class="btn outline" type="button" id="cancelForm">Cancel</button></div><p id="formError" class="danger"></p></form>`;document.getElementById("cancelForm").onclick=()=>w.innerHTML="";document.getElementById("productForm").onsubmit=e=>saveProduct(e,p)}
+async function saveProduct(e,p){e.preventDefault();let err=document.getElementById("formError");err.textContent="Saving…";let record={name:document.getElementById("pName").value.trim(),price:Number(document.getElementById("pPrice").value),category:document.getElementById("pCategory").value.trim(),stock_quantity:Number(document.getElementById("pStock").value),description:document.getElementById("pDescription").value.trim(),is_active:document.getElementById("pActive").checked,image_url:p?.image_url||""};try{let file=document.getElementById("pImage").files[0];if(file){if(file.size>6*1024*1024)throw Error("Choose an image smaller than 6 MB.");if(!file.type.startsWith("image/"))throw Error("Choose an image file.");let path=`${adminUser.id}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"-")}`;let {error}=await sb.storage.from("product-images").upload(path,file,{contentType:file.type});if(error)throw error;record.image_url=sb.storage.from("product-images").getPublicUrl(path).data.publicUrl}let result=p?await sb.from("products").update(record).eq("id",p.id):await sb.from("products").insert(record);if(result.error)throw result.error;await loadAdminProducts();renderAdmin();alert("Product saved.")}catch(ex){err.textContent=ex.message||"Save failed. Check Supabase policies."}}
+async function toggle(id){let p=find(id);let {error}=await sb.from("products").update({is_active:p.is_active===false}).eq("id",id);if(error){alert(error.message);return}await loadAdminProducts();renderAdmin()}
+async function removeProduct(id){let p=find(id);if(!p||!confirm(`Delete "${p.name}"? This cannot be undone.`))return;let {error}=await sb.from("products").delete().eq("id",id);if(error){alert(error.message);return}delete cart[id];count();await loadAdminProducts();renderAdmin()}
+document.getElementById("navCart").onclick=openCart;document.getElementById("floatingCart").onclick=openCart;document.getElementById("sendOrder").onclick=sendOrder;document.getElementById("refreshBtn").onclick=loadProducts;document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).classList.remove("show"));document.querySelectorAll(".overlay").forEach(o=>o.onclick=e=>{if(e.target===o)o.classList.remove("show")});document.getElementById("year").textContent=new Date().getFullYear();document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".overlay.show").forEach(o=>o.classList.remove("show"));if(e.altKey&&e.shiftKey&&e.key.toLowerCase()==="a")openAdmin()});document.querySelector(".brand").addEventListener("dblclick",openAdmin);loadProducts();
+</script></body></html>
