@@ -29,7 +29,7 @@ footer{padding:30px 0;background:#35101e;color:white}.footer-row{display:flex;ju
 <main>
 <section class="hero" id="home"><div class="wrap hero-grid"><div><div class="eyebrow">THE ART OF MODEST ELEGANCE</div><h1>Elegance in Every <em>Thread.</em></h1><p>Discover beautiful dera designs created for effortless elegance, comfort and confidence. Thoughtfully selected styles to make every day feel special.</p><a class="btn primary" href="#shop">EXPLORE COLLECTION →</a></div><div class="hero-art"><div><strong>DÉRAVA</strong><span>TIMELESS BEAUTY</span></div></div></div></section>
 <section id="shop"><div class="wrap"><div class="section-head"><div><div class="eyebrow">THE COLLECTION</div><h2>Find your next favourite</h2><p class="muted">Browse our collection and choose the styles you love.</p></div><button class="btn outline" id="refreshBtn">↻ Refresh products</button></div><div id="status" class="notice">Loading collection…</div><div class="filters" id="filters"></div><div class="grid" id="productGrid"></div></div></section>
-<section class="about" id="about"><div class="wrap about-grid"><div><div class="eyebrow">A LITTLE ABOUT US</div><h2 style="color:var(--wine);font-family:Georgia,serif;font-size:2.4rem;font-weight:500">Style that feels like you.</h2><p class="muted" style="line-height:1.9">DÉRAVA celebrates modest elegance through beautiful dera designs that bring together comfort, confidence and timeless style. Find pieces that feel as lovely as they look.</p></div><div class="about-box"><strong style="color:var(--wine)">A seamless shopping experience</strong><p>Explore the collection, add your favourites to your cart, choose your delivery destination and select how you'd like to place your order.</p><strong>Delivery across Kenya</strong><p class="muted">Delivery fees are calculated at checkout: KSh200 within Kilifi County, Mtwapa, Malindi and Mombasa; KSh300 to other counties.</p></div></div></section>
+<section class="about" id="about"><div class="wrap about-grid"><div><div class="eyebrow">A LITTLE ABOUT US</div><h2 style="color:var(--wine);font-family:Georgia,serif;font-size:2.4rem;font-weight:500">Style that feels like you.</h2><p class="muted" style="line-height:1.9">DÉRAVA celebrates modest elegance through beautiful dera designs that bring together comfort, confidence and timeless style. Find pieces that feel as lovely as they look.</p></div><div class="about-box"><strong style="color:var(--wine)">A seamless shopping experience</strong><p>Explore the collection, add your favourites to your cart, choose your delivery destination and select how you'd like to place your order.</p><strong>Delivery across Kenya</strong><p class="muted">Delivery fees are calculated at checkout: </p></div></div></section>
 </main>
 <footer><div class="wrap footer-row"><div><strong>DÉRAVA</strong><div>Elegance in Every Thread.</div></div><div>WhatsApp: <a href="https://wa.me/254793526605">0793 526 605</a><br><span>kinyunzujane@gmail.com</span></div><div>© <span id="year"></span> DÉRAVA</div></div></footer>
 <button class="btn primary floating" id="floatingCart">🛍️ View cart (<span id="floatingCount">0</span>)</button>
@@ -51,7 +51,37 @@ function getCategories(){return ["All",...new Set(products.map(p=>p.category).fi
 function renderFilters(){const cats=getCategories();$("filters").innerHTML=cats.map(c=>`<button class="filter ${activeCategory===c?"active":""}" data-category="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join("");$("filters").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{activeCategory=b.dataset.category;renderFilters();renderProducts()}))}
 function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function renderProducts(){const q=$("siteSearch").value.trim().toLowerCase();const list=products.filter(p=>(activeCategory==="All"||p.category===activeCategory)&&(!q||`${p.name||""} ${p.category||""} ${p.description||""}`.toLowerCase().includes(q)));const grid=$("productGrid");if(!list.length){grid.innerHTML='<div class="empty">No matching designs found. Try another search or category.</div>';return}grid.innerHTML=list.map(p=>`<article class="card"><div class="photo">${p.image_url?`<img src="${escapeHtml(p.image_url)}" alt="${escapeHtml(p.name)}" loading="lazy">`:`<div class="placeholder">DÉRAVA<br><small>Product image coming soon</small></div>`}</div><div class="card-body"><h3>${escapeHtml(p.name)}</h3><p class="desc">${escapeHtml(p.description||p.category||"Beautiful DÉRAVA design")}</p><div class="price-row"><span class="price">${money(p.price)}</span><button class="btn primary small" data-add="${escapeHtml(p.id)}" ${Number(p.stock_quantity)===0?"disabled":""}>Add to cart</button></div></div></article>`).join("");grid.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>addToCart(b.dataset.add)))}
-async function loadProducts(){if(!db){showStatus("Product service is not configured. Please contact DÉRAVA.", "error");return}showStatus("Loading collection…");try{const {data,error}=await db.from("products").select("id,name,price,category,image_url,stock_quantity,description,is_active").eq("is_active",true).order("created_at",{ascending:false});if(error)throw error;products=data||[];renderFilters();renderProducts();showStatus(products.length?`${products.length} designs available. Find your favourite!`:"Our collection is being updated. Please check back soon.");}catch(e){console.error(e);showStatus("We couldn't load the collection. Please refresh or try again later.","error")}}
+async function loadProducts(){
+  if(!db){
+    showStatus("Supabase is not configured.","error");
+    return;
+  }
+
+  showStatus("Loading collection…");
+
+  try{
+    const {data,error}=await db
+      .from("products")
+      .select("id,name,price,category,image_url,stock_quantity,description,is_active")
+      .eq("is_active",true);
+
+    if(error) throw error;
+
+    products=data||[];
+    renderFilters();
+    renderProducts();
+
+    showStatus(
+      products.length
+        ? `${products.length} designs available. Find your favourite!`
+        : "No active products found."
+    );
+
+  }catch(e){
+    console.error("DÉRAVA PRODUCT ERROR:",e);
+    showStatus("Product error: "+(e.message||String(e)),"error");
+  }
+}
 function addToCart(id){const p=products.find(x=>String(x.id)===String(id));if(!p)return;const current=cart[id]?.qty||0;const stock=Number(p.stock_quantity);if(Number.isFinite(stock)&&stock>=0&&current>=stock){alert("Sorry, the available stock limit has been reached.");return}cart[id]={product:p,qty:current+1};updateCart()}
 function updateCart(){const count=Object.values(cart).reduce((n,x)=>n+x.qty,0);$("cartCount").textContent=count;$("floatingCount").textContent=count;const lines=Object.entries(cart);$("cartItems").innerHTML=lines.length?lines.map(([id,x])=>`<div class="cart-line"><div><strong>${escapeHtml(x.product.name)}</strong><small>${money(x.product.price)} each</small></div><div class="qty"><button data-minus="${escapeHtml(id)}">−</button><span>${x.qty}</span><button data-plus="${escapeHtml(id)}">+</button></div></div>`).join(""):'<p class="muted">Your cart is empty. Explore the collection to add something lovely.</p>';const subtotal=lines.reduce((n,[,x])=>n+moneyNumber(x.product.price)*x.qty,0);$("cartTotal").textContent=money(subtotal);updateDelivery();$("cartItems").querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>changeQty(b.dataset.minus,-1));$("cartItems").querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>changeQty(b.dataset.plus,1))}
 function changeQty(id,d){if(!cart[id])return;cart[id].qty+=d;if(cart[id].qty<=0)delete cart[id];updateCart()}
@@ -65,4 +95,7 @@ function validateOrder(o){if(!o.items.length)return "Your cart is empty.";if(!o.
 function showCheckout(message,type="notice"){$("checkoutMessage").className=type;$("checkoutMessage").textContent=message}
 function sendWhatsApp(){const o=orderDetails(),err=validateOrder(o);if(err){showCheckout(err,"error");return}const lines=o.items.map(i=>`• ${i.name} x${i.quantity} — ${money(i.price*i.quantity)}`).join("\n");const msg=`Hello DÉRAVA! I'd like to place an order.\n\nName: ${o.name}\nPhone: ${o.phone}\nDelivery: ${o.location}\n\n${lines}\n\nSubtotal: ${money(o.subtotal)}\nDelivery: ${money(o.delivery_fee)}\nTOTAL: ${money(o.total)}\n${o.notes?`\nNotes: ${o.notes}`:""}`;window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${encodeURIComponent(msg)}`,"_blank")}
 async function payWithMpesa(){const o=orderDetails(),err=validateOrder(o);if(err){showCheckout(err,"error");return}if(!db){showCheckout("Payment service is not configured yet.","error");return}const btn=$("payMpesa");btn.disabled=true;btn.textContent="Sending request…";showCheckout("Connecting to the DÉRAVA payment service…");try{const {data,error}=await db.functions.invoke("daraja-stk-push",{body:{customer_name:o.name,phone_number:o.phone,delivery_location:o.location,items:o.items,subtotal:o.subtotal,delivery_fee:o.delivery_fee,total_amount:o.total,notes:o.notes}});if(error)throw error;showCheckout(data?.message||"Payment request sent. Check your phone for the M-PESA prompt.","success")}catch(e){console.error(e);showCheckout("M-PESA checkout is not active yet. Please use WhatsApp while the payment function is being completed.","error")}finally{btn.disabled=false;btn.textContent="Pay with M-PESA"}}
-$("year").textContent=new Date().getFullYear();$("navCart").onclick=openCart;$("floatingCart").onclick=openCart;$("sendOrder").onclick=sendWhatsApp;$("payMpesa").onclick=payWithMpesa;$("refreshBtn").onclick=loadProducts;$("customerLocation").onchange=updateDelivery;$("siteSearch").addEventListener("input",renderProducts);document.querySelec
+$("year").textContent=new Date().getFullYear();$("navCart").onclick=openCart;$("floatingCart").onclick=openCart;$("sendOrder").onclick=sendWhatsApp;$("payMpesa").onclick=payWithMpesa;$("refreshBtn").onclick=loadProducts;$("customerLocation").onchange=updateDelivery;$("siteSearch").addEventListener("input",renderProducts);document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>closeOverlay(b.dataset.close));document.querySelectorAll("[data-jump]").forEach(a=>a.onclick=()=>{activeCategory=a.dataset.jump==="All"?"All":products.find(p=>String(p.category).toLowerCase().includes(a.dataset.jump.toLowerCase()))?.category||a.dataset.jump;renderFilters();renderProducts()});$("cartOverlay").addEventListener("click",e=>{if(e.target===$("cartOverlay"))closeOverlay("cartOverlay")});updateCart();loadProducts();
+</script>
+</body>
+</html>
